@@ -1,0 +1,35 @@
+[build]
+  command = "npm run build"
+  functions = "dist/functions"
+
+[build.environment]
+  NODE_VERSION = "12"
+
+[template.environment]
+  BOT_TOKEN = "discord bot token here"
+  CHANNEL_ID = "discord channel id for invite"
+  GUILD_ID = "discord guild id"
+  CLIENT_ID = ""
+  CLIENT_SECRET = ""
+  OAUTH_SCOPES = "identify"
+  REDIRECT_URI = "https://example.com/api/callback"
+  
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/discord"
+  to = "/.netlify/functions/invite?redirect=true"
+  status = 301
+
+[[redirects]]
+  from = "/api/members"
+  to = "/api/users"
+  status = 301
+
+[[redirects]]
+  from = "/api/member-count"
+  to = "/api/user-count"
+  status = 301
